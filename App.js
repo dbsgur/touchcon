@@ -6,6 +6,7 @@ import Intro1 from './src/containers/Mainflow/Intro1/view';
 import Intro2 from './src/containers/Mainflow/Intro2/view';
 import Intro3 from './src/containers/Mainflow/Intro3/view';
 import Signup from './src/containers/Mainflow/Signup/view';
+import Pinsign from './src/containers/Mainflow/Pinsign/view';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 const Stack = createStackNavigator();
@@ -15,6 +16,11 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Pinsign"
+          component={Pinsign}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Splash"
           component={Splash}
