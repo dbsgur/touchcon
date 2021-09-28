@@ -13,21 +13,25 @@ const Tab = createMaterialTopTabNavigator();
 
 function App() {
   return (
-    <Signup />
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen
-    //       name="Splash"
-    //       component={Splash}
-    //       options={{headerShown: false}}
-    //     />
-    //     <Stack.Screen
-    //       name="Intro"
-    //       component={MyTabs}
-    //       options={{headerShown: false}}
-    //     />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Splash"
+          component={Splash}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Intro"
+          component={MyTabs}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={Signup}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

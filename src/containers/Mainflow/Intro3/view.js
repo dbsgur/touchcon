@@ -51,7 +51,7 @@ export default function Intro3({navigation}) {
           resizeMode: 'contain',
         }}
       />
-      <TouchableOpacity onPress={() => navigation.navigate('Splash')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
         <Image
           source={require('../../../assets/images/pic3_6.png')}
           style={{

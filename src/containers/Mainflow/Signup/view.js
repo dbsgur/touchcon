@@ -15,27 +15,48 @@ const {height, width} = Dimensions.get('window');
 const vh = height / 100;
 const vw = width / 100;
 
-function Signup(navigation) {
+function Signup(props) {
   const [allagree, setAllagree] = useState(false);
   const [ser_agree, setSer_agree] = useState(false);
   const [per_agree, setPer_agree] = useState(false);
   const [mark_agree, setMark_agree] = useState(false);
+  const [warnning, setWarnnig] = useState(false);
   const [email, onChangeEmail] = React.useState('');
   const [code, onChangeCode] = React.useState('');
 
   const chg_ser = () => {
     setSer_agree(!ser_agree);
+    if (ser_agree === true) {
+      setAllagree(false);
+    }
   };
   const chg_per = () => {
     setPer_agree(!per_agree);
+    if (per_agree === true) {
+      setAllagree(false);
+    }
   };
   const chg_mark = () => {
     setMark_agree(!mark_agree);
+    if (mark_agree === true) {
+      setAllagree(false);
+    }
   };
   const chg_all = () => {
-    setSer_agree(true);
-    setPer_agree(true);
-    setMark_agree(true);
+    if (allagree === false) {
+      setMark_agree(true);
+      setPer_agree(true);
+      setSer_agree(true);
+      setAllagree(true);
+    }
+  };
+  const gobtn = () => {
+    if (per_agree === true && ser_agree === true) {
+      setWarnnig(false);
+      props.navigation.navigate('Intro1');
+    } else {
+      setWarnnig(true);
+    }
   };
   return (
     <View style={styles.signup_container}>
@@ -63,20 +84,21 @@ function Signup(navigation) {
       {/* 약관 동의 */}
       <ImageBackground
         source={require('../../../assets/images/rectangle12.png')}
-        // onPress={chg_all}
         style={{
           width: width * 0.9,
           height: height * 0.055,
           resizeMode: 'contain',
           flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-evenly',
         }}>
         {allagree ? (
           <TouchableOpacity onPress={chg_all}>
             <Image
               source={require('../../../assets/images/chk_square.png')}
-              styles={{
-                width: width * 0.001,
-                height: height * 0.001,
+              style={{
+                width: width * 0.06,
+                height: height * 0.06,
                 resizeMode: 'contain',
               }}
             />
@@ -85,23 +107,26 @@ function Signup(navigation) {
           <TouchableOpacity onPress={chg_all}>
             <Image
               source={require('../../../assets/images/square.png')}
-              styles={{
-                width: width * 0.001,
-                height: height * 0.001,
+              style={{
+                width: width * 0.06,
+                height: height * 0.06,
                 resizeMode: 'contain',
               }}
             />
           </TouchableOpacity>
         )}
-
-        <Image
-          source={require('../../../assets/images/nobutton.png')}
-          styles={{
-            width: width * 0.001,
-            height: height * 0.001,
-            resizeMode: 'contain',
-          }}
-        />
+        <TouchableOpacity
+          onPress={chg_all}
+          style={{width: width * 0.75, height: height * 0.03}}>
+          <Image
+            source={require('../../../assets/images/nobutton.png')}
+            style={{
+              width: width * 0.28,
+              height: height * 0.03,
+              resizeMode: 'contain',
+            }}
+          />
+        </TouchableOpacity>
       </ImageBackground>
       <ImageBackground
         source={require('../../../assets/images/rectangle13.png')}
@@ -110,75 +135,178 @@ function Signup(navigation) {
           resizeMode: 'contain',
           height: height * 0.2087,
         }}>
-        {ser_agree ? (
-          <TouchableOpacity onPress={chg_ser}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+          }}>
+          {ser_agree ? (
+            <TouchableOpacity onPress={chg_ser}>
+              <Image
+                source={require('../../../assets/images/chk_square.png')}
+                style={{
+                  width: width * 0.06,
+                  height: height * 0.06,
+                  resizeMode: 'contain',
+                }}
+              />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={chg_ser}>
+              <Image
+                source={require('../../../assets/images/square.png')}
+                style={{
+                  width: width * 0.06,
+                  height: height * 0.06,
+                  resizeMode: 'contain',
+                }}
+              />
+            </TouchableOpacity>
+          )}
+          <TouchableOpacity
+            onPress={chg_ser}
+            style={{
+              width: width * 0.6,
+              height: height * 0.03,
+              resizeMode: 'contain',
+              justifyContent: 'center',
+            }}>
             <Image
-              source={require('../../../assets/images/chk_square.png')}
-              styles={{
-                width: width * 0.001,
-                height: height * 0.001,
+              source={require('../../../assets/images/service_agree.png')}
+              style={{
+                width: width * 0.48,
+                height: height * 0.03,
                 resizeMode: 'contain',
               }}
             />
           </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={chg_ser}>
+          <TouchableOpacity>
             <Image
-              source={require('../../../assets/images/square.png')}
-              styles={{
-                width: width * 0.001,
-                height: height * 0.001,
+              source={require('../../../assets/images/detailview.png')}
+              style={{
+                width: width * 0.13,
+                height: height * 0.03,
                 resizeMode: 'contain',
               }}
             />
           </TouchableOpacity>
-        )}
-        {per_agree ? (
-          <TouchableOpacity onPress={chg_per}>
+        </View>
+
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+          }}>
+          {per_agree ? (
+            <TouchableOpacity onPress={chg_per}>
+              <Image
+                source={require('../../../assets/images/chk_square.png')}
+                style={{
+                  width: width * 0.06,
+                  height: height * 0.06,
+                  resizeMode: 'contain',
+                }}
+              />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={chg_per}>
+              <Image
+                source={require('../../../assets/images/square.png')}
+                style={{
+                  width: width * 0.06,
+                  height: height * 0.06,
+                  resizeMode: 'contain',
+                }}
+              />
+            </TouchableOpacity>
+          )}
+          <TouchableOpacity
+            onPress={chg_per}
+            style={{
+              width: width * 0.6,
+              height: height * 0.03,
+              resizeMode: 'contain',
+              justifyContent: 'center',
+            }}>
             <Image
-              source={require('../../../assets/images/chk_square.png')}
-              styles={{
-                width: width * 0.001,
-                height: height * 0.001,
+              source={require('../../../assets/images/personal_agree.png')}
+              style={{
+                width: width * 0.6,
+                height: height * 0.03,
                 resizeMode: 'contain',
               }}
             />
           </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={chg_per}>
+          <TouchableOpacity>
             <Image
-              source={require('../../../assets/images/square.png')}
-              styles={{
-                width: width * 0.001,
-                height: height * 0.001,
+              source={require('../../../assets/images/detailview.png')}
+              style={{
+                width: width * 0.13,
+                height: height * 0.03,
                 resizeMode: 'contain',
               }}
             />
           </TouchableOpacity>
-        )}
-        {mark_agree ? (
-          <TouchableOpacity onPress={chg_mark}>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+          }}>
+          {mark_agree ? (
+            <TouchableOpacity onPress={chg_mark}>
+              <Image
+                source={require('../../../assets/images/chk_square.png')}
+                style={{
+                  width: width * 0.06,
+                  height: height * 0.06,
+                  resizeMode: 'contain',
+                }}
+              />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={chg_mark}>
+              <Image
+                source={require('../../../assets/images/square.png')}
+                style={{
+                  width: width * 0.06,
+                  height: height * 0.06,
+                  resizeMode: 'contain',
+                }}
+              />
+            </TouchableOpacity>
+          )}
+          <TouchableOpacity
+            onPress={chg_mark}
+            style={{
+              width: width * 0.6,
+              height: height * 0.03,
+              resizeMode: 'contain',
+              justifyContent: 'center',
+            }}>
             <Image
-              source={require('../../../assets/images/chk_square.png')}
-              styles={{
-                width: width * 0.001,
-                height: height * 0.001,
+              source={require('../../../assets/images/marketing_agree.png')}
+              style={{
+                width: width * 0.45,
+                height: height * 0.03,
                 resizeMode: 'contain',
               }}
             />
           </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={chg_mark}>
+          <TouchableOpacity>
             <Image
-              source={require('../../../assets/images/square.png')}
-              styles={{
-                width: width * 0.001,
-                height: height * 0.001,
+              source={require('../../../assets/images/detailview.png')}
+              style={{
+                width: width * 0.13,
+                height: height * 0.03,
                 resizeMode: 'contain',
               }}
             />
           </TouchableOpacity>
-        )}
+        </View>
       </ImageBackground>
       {/* 이메일 입력창 component화 ?*/}
       <ImageBackground
@@ -251,7 +379,7 @@ function Signup(navigation) {
         }}
       />
       {/* <TouchableOpacity onPress={() => navigation.navigate('Intro1')}> */}
-      <TouchableOpacity>
+      <TouchableOpacity onPress={gobtn}>
         <Image
           source={require('../../../assets/images/next_button.png')}
           style={{
