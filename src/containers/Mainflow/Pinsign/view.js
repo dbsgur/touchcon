@@ -64,7 +64,7 @@ export default function Pinsign() {
         {pwd.length >= 6 ? <Orange /> : <Gray />}
         {pwd.length >= 7 ? <Orange /> : <Gray />}
         <TextInput
-          style={{position: 'absolute', width: width * 0.6}}
+          style={{position: 'absolute', width: width * 0.6, color: 'white'}}
           onChangeText={onChangePwd}
           maxLength={7}
           secureTextEntry={true}
