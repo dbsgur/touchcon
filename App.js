@@ -6,7 +6,8 @@ import Intro1 from './src/containers/Mainflow/Intro1/view';
 import Intro2 from './src/containers/Mainflow/Intro2/view';
 import Intro3 from './src/containers/Mainflow/Intro3/view';
 import Signup from './src/containers/Mainflow/Signup/view';
-import Pinsign from './src/containers/Mainflow/Pinsign/view';
+import Pinlogin from './src/containers/Mainflow/Pinlogin/view';
+import Pinchg from './src/containers/Mainflow/Pinchg/view';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 const Stack = createStackNavigator();
@@ -17,13 +18,18 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Pinsign"
-          component={Pinsign}
+          name="Pinlogin"
+          component={Pinlogin}
           options={{headerShown: false}}
         />
         <Stack.Screen
           name="Splash"
           component={Splash}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Pinchg"
+          component={Pinchg}
           options={{headerShown: false}}
         />
         <Stack.Screen

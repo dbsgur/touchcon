@@ -41,7 +41,7 @@ function Gray() {
   );
 }
 
-export default function Pinsign() {
+export default function Pinlogin() {
   const [pwd, onChangePwd] = React.useState('');
   return (
     <View style={styles.pingsign_container}>
@@ -70,7 +70,7 @@ export default function Pinsign() {
           secureTextEntry={true}
           keyboardType={'number-pad'}
           caretHidden={true}
-          value={pwd}
+
           // onKeyPress 비밀번호 확인 작업
         />
       </View>
