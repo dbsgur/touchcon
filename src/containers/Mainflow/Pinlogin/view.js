@@ -43,8 +43,23 @@ function Gray() {
 
 export default function Pinlogin() {
   const [pwd, onChangePwd] = React.useState('');
+  const [test, setTest] = useState('0000000');
+  const [pwdbool, setPwdbool] = useState(0);
+
+  const handleKeyPress = e => {
+    console.log('rrr', pwdbool);
+    if (pwd === test) {
+      console.log('login success');
+    } else {
+      setPwdbool(pwdbool + 1);
+      console.log('login fail');
+      console.log('pwd = ', pwd);
+      console.log('pwdbool= ', pwdbool);
+      onChangePwd('');
+    }
+  };
   return (
-    <View style={styles.pingsign_container}>
+    <View style={styles.pinglogin_container}>
       <View style={{marginTop: height * 0.1}}>
         <Image
           source={require('../../../assets/images/pintext.png')}
@@ -65,12 +80,14 @@ export default function Pinlogin() {
         {pwd.length >= 7 ? <Orange /> : <Gray />}
         <TextInput
           style={{position: 'absolute', width: width * 0.6, color: 'white'}}
+          // onKeyPress={handleKeyPress}
+          value={pwd}
+          onSubmitEditing={handleKeyPress}
           onChangeText={onChangePwd}
           maxLength={7}
           secureTextEntry={true}
           keyboardType={'number-pad'}
           caretHidden={true}
-
           // onKeyPress 비밀번호 확인 작업
         />
       </View>
@@ -92,7 +109,7 @@ export default function Pinlogin() {
 }
 
 const styles = StyleSheet.create({
-  pingsign_container: {
+  pinglogin_container: {
     width: width,
     height: height,
     backgroundColor: 'white',
